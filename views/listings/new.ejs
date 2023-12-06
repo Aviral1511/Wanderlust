@@ -1,0 +1,107 @@
+<% layout('/layouts/boilerplate') -%>
+<div class="row">
+    <div class="col-8 offset-2">
+        <br><br>
+        <h3>Add new Listing</h3>
+        <form action="/listings" method="post" class = "needs-validation" id="myForm" novalidate enctype="multipart/form-data">
+            <div>
+                <label for="title" class="form-label">Title</label>
+                <input type="text" placeholder="Enter an Eye-Catching Title..." name="listing[title]" class="form-control" required>
+                <div class="valid-feedback">Title looks good!</div>
+                <div class="invalid-feedback">Please add a Title</div>
+            </div>
+            <br>
+            <div>
+                <label for="desc" class="form-label">Description</label>
+                <textarea name="listing[desc]" cols="30" rows="4" placeholder="Describe your place..." class="form-control" required></textarea>
+                <div class="valid-feedback">Very Descriptive</div>
+                <div class="invalid-feedback">Please add a little Description</div>
+            </div>
+            <br>
+            <div>
+                <label for="image" class="form-label">Upload Image</label>
+                <input type="file" name="listing[image]" class="form-control" required>
+            </div>
+            <br>
+            <div class="filter-section required" >
+                <p>Select Categories</p>
+                <div class="filter-panel">                
+                    
+                    <input type="checkbox" name = "listing[filter][]" class="btn-check" id="Trending" value="Trending">
+                    <label class="btn btn-outline-success"  for="Trending" >Trending</label><br>
+
+                    <input type="checkbox" name = "listing[filter][]" class="btn-check" id="Rooms" value="Rooms">
+                    <label class="btn btn-outline-success"  for="Rooms">Rooms</label><br>
+
+                    <input type="checkbox" name = "listing[filter][]" class="btn-check" id="Iconic Cities" value="Iconic Cities">
+                    <label class="btn btn-outline-success" for="Iconic Cities">Iconic Cities</label><br>
+
+                    <input type="checkbox" name = "listing[filter][]" class="btn-check" id="Mountains" value="Mountains">
+                    <label class="btn btn-outline-success" for="Mountains">Mountains</label><br>
+
+                    <input type="checkbox" name = "listing[filter][]" class="btn-check" id="Pools" value="Pools">
+                    <label class="btn btn-outline-success" for="Pools">Pools</label><br>
+
+                    <input type="checkbox" name = "listing[filter][]" class="btn-check" id="Castles" value="Castles">
+                    <label class="btn btn-outline-success" name = for="Castles">Castles</label><br>
+                </div>
+                <div class="filter-panel"> 
+
+                    <input type="checkbox" name = "listing[filter][]" class="btn-check" id="Snowfall" value="Snowfall">
+                    <label class="btn btn-outline-success" for="Snowfall">Snowfall</label><br>
+
+                    <input type="checkbox" name = "listing[filter][]" class="btn-check" id="Skiing" value="Skiing">
+                    <label class="btn btn-outline-success" for="Skiing">Skiing</label><br>
+
+                    <input type="checkbox" name = "listing[filter][]" class="btn-check" id="Camping" value="Camping">
+                    <label class="btn btn-outline-success" for="Camping">Camping</label><br>
+
+                    <input type="checkbox" name = "listing[filter][]" class="btn-check" id="Beach" value="Beach">
+                    <label class="btn btn-outline-success"  for="Beach">Beach</label><br>
+
+                    <input type="checkbox" name = "listing[filter][]" class="btn-check" id="Forests" value="Forests">
+                    <label class="btn btn-outline-success" for="Forests">Forests</label><br>
+                    
+                </div>
+            </div>
+            
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" placeholder="Eg:- 1200" name="listing[price]" class="form-control" required>
+                    <div class="valid-feedback">Perfect Price</div>
+                    <div class="invalid-feedback">Please add a valid price</div>
+                </div>
+                <br>
+                <div class="col-md-8">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" placeholder="Eg:- India" name="listing[country]" class="form-control" required>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please add a country</div>
+                </div>
+            </div>
+            
+            <br>
+            <div>
+                <label for="location" class="form-label">Location</label>
+                <input type="text" placeholder="Eg:- Jaipur,Rajasthan" name="listing[location]" class="form-control" required>
+                <div class="valid-feedback">Very good!</div>
+                <div class="invalid-feedback">Please add a location</div>
+            </div>               
+            <br><br>
+            <button class="btn btn-dark add-btn">Add</button>
+            <br><br>
+        </form>
+    </div>        
+</div>
+<script>
+    document.getElementById('myForm').addEventListener('submit', function(e) {
+        let checkboxes = document.querySelectorAll('input.btn-check[type="checkbox"]');
+        let checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
+        if (!checkedOne) {
+            e.preventDefault();
+            alert('Check at least one checkbox!');
+        }
+    });
+</script>

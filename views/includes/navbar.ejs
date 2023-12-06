@@ -1,0 +1,72 @@
+<style>
+  .d-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dropdown-search{
+    border: 2px solid black;
+  }
+  .dropdown-toggle{
+    border: 2px solid black;
+    border-radius: 20px;
+  }
+  .dropdown-item:hover {
+    background-color: rgb(255, 85, 85);
+  }
+</style>
+<nav class="navbar sticky-top navbar-expand-md bg-body-light border-bottom ">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search" action="/find/search" method="get">
+          <div class="input-group ">
+            <input type="text" class="form-control dropdown-search" placeholder="Search destination" name = "country" value="">
+            <button class="btn btn-outline-info dropdown-toggle" data-bs-toggle="dropdown" >Countries</button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/find/United States">United States</a></li>
+              <li><a class="dropdown-item" href="/find/India">India</a></li>
+              <li><a class="dropdown-item" href="/find/Italy">Italy</a></li>
+              <li><a class="dropdown-item" href="/find/Mexico">Mexico</a></li>
+              <li><a class="dropdown-item" href="/find/Switzerland">Switzerland</a></li>
+              <li><a class="dropdown-item" href="/find/Tanzania">Tanzania</a></li>
+              <li><a class="dropdown-item" href="/find/Netherlands">Netherlands</a></li>
+              <li><a class="dropdown-item" href="/find/Fiji">Fiji</a></li>
+              <li><a class="dropdown-item" href="/find/Indonesia">Indonesia</a></li>
+              <li><a class="dropdown-item" href="/find/Thailand">Thailand</a></li>
+              <li><a class="dropdown-item" href="/find/Canada">Canada</a></li>
+              <li><a class="dropdown-item" href="/find/United Kingdom">United Kingdom</a></li>
+              <li><a class="dropdown-item" href="/find/United Arab Emirates">United Arab Emirates</a></li>
+              <li><a class="dropdown-item" href="/find/Greece">Greece</a></li>
+              <li><a class="dropdown-item" href="/find/Costa Rica">Costa Rica</a></li>
+              <li><a class="dropdown-item" href="/find/Japan">Japan</a></li>
+              <li><a class="dropdown-item" href="/find/Maldives">Maldives</a></li>
+            </ul>
+            <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+          </div>
+          
+        </form>        
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        <% if (!currUser) { %>
+          <a class="nav-link " href="/signup"><b>SignUp</b></a>
+          <a class="nav-link" href="/login"><b>Log In</b></a>
+        <% } %>
+        <% if (currUser) { %>
+          <a class="nav-link" href="/logout"><b>Log Out</b></a>
+        <% } %>        
+      </div>
+    </div>
+  </div>
+</nav>
+
