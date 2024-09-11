@@ -115,11 +115,11 @@ app.listen(port, () => {
 
 //FLASING MESSAGES
 app.use((req,res,next) => {
-    res.locals.success = req.flash("success");
+    res.locals.success = req.flash("success"); //res.locals make it available to all ejs templates -> success messages assignes to res.locals.success
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
     next();
-})
+});
 
 
 app.use('/listings', listingRouter);
