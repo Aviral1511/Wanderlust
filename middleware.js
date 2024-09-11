@@ -45,11 +45,11 @@ module.exports.validateListing = (req,res,next) => {
 
 //ERROR HANDLING - JOI- SCHEMA - SERVER SIDE
 module.exports.validateReview = (req,res,next) => {
-    let {error} = reviewSchema.validate(req.body);
+    let {error} = reviewSchema.validate(req.body); //validating schema data, queries,conditions
     if(error){
-        let errMsg = error.details.map((el) => el.message).join(",");
+        let errMsg = error.details.map((el) => el.message).join(","); //connecting all error messages
         //throw new ExpressError(400, errMsg);
-        next( new ExpressError(400, errMsg));
+        next( new ExpressError(400, errMsg)); //going straight to error middleware
     } else {
         next();
     }
