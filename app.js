@@ -44,7 +44,7 @@ const store = MongoStore.create({
     crypto: {
         secret: process.env.SECRET,
     },
-    touchAfter : 24 * 3600
+    touchAfter : 24 * 3600 //saved after this seconds
 });
 
 store.on(("error"), (err) => {
@@ -54,12 +54,12 @@ store.on(("error"), (err) => {
 const sessionOptions = {
     store,
     secret : process.env.SECRET,
-    resave : false,
+    resave : false,  //session saved only when modified
     saveUninitialized : true,
     cookie : {
-        expires : Date.now() + 7 * 24 * 60 * 60 * 1000,
-        maxAge : 7 * 24 * 60 * 60 * 1000,
-        httpOnly : true,
+        expires : Date.now() + 7 * 24 * 60 * 60 * 1000,  //session cookie expires after this time
+        maxAge : 7 * 24 * 60 * 60 * 1000, //session cookie gets deleted after this time
+        httpOnly : true,  //cookie sent over only https
     }
 };
 
@@ -76,8 +76,8 @@ const User = require("./models/user.js");
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrtegy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(User.serializeUser()); //helps in storing users info
+passport.deserializeUser(User.deserializeUser()); //helps in fetching users info
 
 // app.use("/demoUser", async (req,res) => {
 //     let fakeUser = new User({
@@ -92,15 +92,15 @@ passport.deserializeUser(User.deserializeUser());
 
 
 const ejsMate = require("ejs-mate");
-app.engine("ejs",ejsMate);
+app.engine("ejs",ejsMate); // helps in accessing ejs files, templates
 const path = require("path");
-app.set("views",path.join(__dirname, "/views"));
+app.set("views",path.join(__dirname, "/views")); // in veiws directory our ejs files are stored
 app.set("view engine","ejs");
-app.use(express.static("public"));
+app.use(express.static("public")); //static files from public folder
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({extended : true}));
-const methodOverride = require("method-override");
-app.use(methodOverride("_method"));
+const methodOverride = require("method-override"); // helps in suppporting put, delete
+app.use(methodOverride("_method")); //helps in doing above
 
 
 
